@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Request\Contracts\AddLotRequest;
+use App\Service\Contracts\MarketService;
+use App\Service\DbMarketService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -24,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(MarketService::class, DbMarketService::class);
+        $this->app->bind(AddLotRequest::class, DbAddLotRequest::class);
     }
 }
